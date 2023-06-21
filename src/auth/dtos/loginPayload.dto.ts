@@ -1,19 +1,18 @@
-import { User } from "@prisma/client";
+import { User } from '@prisma/client';
 
 export class loginPayloadDto {
-    id: number;
-    typeUser: number;
+  id: number;
+  typeUser: number;
 
+  constructor(user: User) {
+    this.id = user.id;
+    this.typeUser = user.typeUser;
+  }
 
-    constructor(private readonly user: User) {
-        this.id = user.id;
-        this.typeUser = user.typeUser;
-    }
-
-    toJSON(): any {
-        return {
-          id: this.id,
-          typeUser: this.typeUser,
-        };
-    }
+  toJSON(): any {
+    return {
+      id: this.id,
+      typeUser: this.typeUser,
+    };
+  }
 }

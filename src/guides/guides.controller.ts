@@ -14,19 +14,13 @@ import { GuideDto } from './dtos/guides.dto';
 import { Roles } from '../decorator/roles.decorator';
 import { TypesRoles } from '../user/enum/role.enum';
 
-@Roles(TypesRoles.Admin)
 @Controller('guides')
 export class GuidesController {
   constructor(private readonly guideServices: GuidesService) {}
 
   @Get()
-  async getAllGuides(): Promise<ReturnGuidesDto[]> {
-    const guides = await this.guideServices.getAllGuides();
-
-    return guides.map((guide) => ({
-      id: guide.id,
-      title: guide.title,
-    }));
+  async getAllGuides(): Promise<Guide[]> {
+    return await this.guideServices.getAllGuides();
   }
 
   @Get('/:id')
